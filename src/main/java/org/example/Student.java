@@ -2,6 +2,7 @@ package org.example;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ public class Student {
     private String name;
     private int marks;
 
-    @OneToMany(mappedBy = "student")
+    @ManyToMany(mappedBy = "student")
     private List<Laptop> laptop = new ArrayList<>();
 
     public List<Laptop> getLaptop() {

@@ -30,7 +30,7 @@ public class App {
         student.setName("Nishant Tyagi");
         student.setMarks(100);
 
-        laptop.setStudent(student);
+        laptop.getStudent().add(student);
         student.getLaptop().add(laptop);
 
         /**
