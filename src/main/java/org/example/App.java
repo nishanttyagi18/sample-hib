@@ -11,34 +11,32 @@ import org.hibernate.cfg.Configuration;
 public class App {
     public static void main(String[] args) {
 
+/**
+ * MAPPING RELATIONS
+ */
 
-        Configuration configuration = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Alien.class);
+        Configuration configuration = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Laptop.class).addAnnotatedClass(Student.class);
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
 
-/**
- * Fetching data from the database
- */
-        Alien nishant_data = session.get(Alien.class, 1);
-        System.out.println(nishant_data);
+
+        Laptop laptop = new Laptop();
+        laptop.setId(101);
+        laptop.setLname("Dell");
+
+        Student student = new Student();
+        student.setRollno(1);
+        student.setName("Nishant Tyagi");
+        student.setMarks(100);
+        student.setLaptop(laptop);        // one to one mapping
 
 
-/**
- * Object under object
- */
-        Alien nishant = new Alien();
+        session.save(student);
+        session.save(laptop);
 
-        AlienName nishant_name = new AlienName();
-        nishant_name.setFname("Nishant");
-        nishant_name.setLname("Tyagi");
-        nishant_name.setMname("Kumar");
 
-        nishant.setAid(3);
-        nishant.setAname(nishant_name);
-        nishant.setColor("Blue");
 
-        session.save(nishant);
 
         tx.commit();
         session.close();
