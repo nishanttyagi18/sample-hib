@@ -29,7 +29,7 @@ public class App {
         student.setRollno(1);
         student.setName("Nishant Tyagi");
         student.setMarks(100);
-        student.setLaptop(laptop);        // one to one mapping
+        student.getLaptop().add(laptop);   // one to many mapping
 
 
         session.save(student);
